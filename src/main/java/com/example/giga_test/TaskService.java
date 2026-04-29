@@ -14,10 +14,10 @@ public class TaskService {
                 "Test",
                 "testtest",
                 Status.NEW,
-                new Priority(),
-                new Category(),
-                new User(),
-                new Operator(),
+                Priority.MEDIUM,
+                Category.GENERAL,
+                new User(1, "Demo User"),
+                new Operator(100, "Demo Operator"),
                 LocalDateTime.now(),
                 LocalDateTime.now().plusHours(8)
 

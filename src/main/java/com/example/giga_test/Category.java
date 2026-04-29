@@ -1,4 +1,8 @@
 package com.example.giga_test;
 
-public class Category {
+public enum Category {
+    GENERAL,
+    INCIDENT,
+    ACCESS,
+    BILLING
 }
