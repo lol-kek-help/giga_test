@@ -9,12 +9,14 @@ import chat.giga.model.completion.ChatMessage;
 import chat.giga.model.completion.ChatMessageRole;
 import chat.giga.model.completion.CompletionRequest;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class GigaTestApplication {
 	public static void main(String[] args) {
 		//gigatest
+		SpringApplication.run(GigaTestApplication.class, args);
 		/*
 		GigaChatClient client = GigaChatClient.builder()
 				.verifySslCerts(false)
