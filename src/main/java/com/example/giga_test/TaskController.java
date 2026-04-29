@@ -12,7 +12,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping({"/tasks/{id:\\d+}", "/{id:\\d+}"})
+    @GetMapping({"/{id}"})
     public Task getTaskByID(
             @PathVariable("id") int id
     ) {
