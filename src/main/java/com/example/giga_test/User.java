@@ -1,4 +1,4 @@
 package com.example.giga_test;
 
-public class User {
+public record User(int id, String name) {
 }
