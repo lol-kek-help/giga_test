@@ -27,4 +27,44 @@ public class Task {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescriprion() {
+        return descriprion;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Operator getOperator() {
+        return operator;
+    }
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
 }
