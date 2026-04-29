@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GigaTestApplication {
 	public static void main(String[] args) {
+		//gigatest
 		/*
 		GigaChatClient client = GigaChatClient.builder()
 				.verifySslCerts(false)
