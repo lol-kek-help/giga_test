@@ -3,11 +3,11 @@ package com.example.giga_test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/task")
@@ -33,12 +33,42 @@ public class TaskController {
         log.info("called getAllTask");
         return ResponseEntity.ok(taskService.findAllTask());
     }
-    @PostMapping()
+    @PostMapping("/new-task")
     public ResponseEntity<Task> createTask (
             @RequestBody Task taskToCreate
     ){
         log.info("new Task");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(taskService.createTask(taskToCreate));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Task> updateTask(
+            @PathVariable("id") Long id,
+            @RequestBody Task taskToUpdate
+    ) {
+        log.info("called updateTask " + id);
+        var updated = taskService.updateTask(id, taskToUpdate);
+        return ResponseEntity.ok(updated);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(
+            @PathVariable("id") Long id
+    ) {
+        log.info("delete Task " + id);
+        try {
+            taskService.deleteTask(id);
+            return ResponseEntity.ok().build();
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+    @PostMapping("/{id}/ai-processing")
+    public ResponseEntity<Task> aiProcessingTask(
+            @PathVariable("id") Long id
+    ){
+        log.info("approve Task " + id);
+        var task = taskService.aiProcessingTask(id);
+        return ResponseEntity.ok(task);
     }
 }

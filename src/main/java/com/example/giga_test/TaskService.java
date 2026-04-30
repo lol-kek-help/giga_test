@@ -2,7 +2,6 @@ package com.example.giga_test;
 
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,5 +37,41 @@ public class TaskService {
                 .build();
         taskMap.put(newTask.getId(), newTask);
         return newTask;
+    }
+
+    public Task updateTask(Long id, Task taskToUpdate) {
+        if (!taskMap.containsKey(id)){
+            throw new NoSuchElementException("No that id = " + id);
+        }
+        var task = taskMap.get(id);
+        if(task.status == Status.CLOSED){
+            throw new IllegalStateException("Cannot modify" + task.status);
+        }
+        Task updatetTask = taskToUpdate.toBuilder().build();
+        taskMap.put(updatetTask.getId(), updatetTask);
+        return updatetTask;
+    }
+
+    public void deleteTask(Long id) {
+        if (!taskMap.containsKey(id)){
+            throw new NoSuchElementException("No that id = " + id);
+        }
+        taskMap.remove(id);
+    }
+
+    public Task aiProcessingTask(Long id) {
+        if (!taskMap.containsKey(id)){
+            throw new NoSuchElementException("No that id = " + id);
+        }
+        var task = taskMap.get(id);
+        if(task.status == Status.CLOSED){
+            throw new IllegalStateException("Cannot approve" + task.status);
+        }
+        task = sendToAI(task);
+        return null;
+    }
+    private Task sendToAI (Task task){ //TODO: AI
+        task.setCategory(Category.INCIDENT);
+        return task;
     }
 }

@@ -20,7 +20,6 @@ public class Task {
     User requester;
     User assignedTo;
     LocalDateTime createdAt;
-    LocalDateTime updatedAt;
     LocalDateTime resolutionDeadline;
     String resolutionComment;
 }
